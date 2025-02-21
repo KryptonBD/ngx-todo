@@ -12,6 +12,13 @@ AppDataSource.initialize()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
+
+      const todoRepository = AppDataSource.getRepository("Todo");
+
+      app.get("/", async (req, res) => {
+        const allTodos = await todoRepository.find();
+        res.json(allTodos);
+      });
     });
   })
   .catch((error) => {
