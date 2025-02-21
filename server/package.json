@@ -4,13 +4,16 @@
   "description": "Backend of the Todo app",
   "main": "app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node --env-file=.env dist/app.js",
     "dev": "ts-node src/app.ts"
   },
   "author": "foysol",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.3",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

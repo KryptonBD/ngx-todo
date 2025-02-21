@@ -1,11 +1,19 @@
 import express from "express";
+import dotenv from "dotenv";
+import { AppDataSource } from "./config/db";
+
+dotenv.config();
+const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
+AppDataSource.initialize()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to connect to the database", error);
+  });
