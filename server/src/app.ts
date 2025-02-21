@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { AppDataSource } from "./config/db";
-import todos from "./routes/todos";
+import todos from "./routes/todos.route";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;

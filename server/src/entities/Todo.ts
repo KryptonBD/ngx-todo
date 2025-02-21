@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Todo as ITodo, TodoStatus } from "../models/todo";
+import { Todo as ITodo, TodoStatus } from "../models/todo.model";
 
 @Entity()
 export class Todo implements ITodo {
