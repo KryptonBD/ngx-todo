@@ -1,0 +1,19 @@
+{
+  "name": "ngx-todo",
+  "version": "1.0.0",
+  "description": "Backend of the Todo app",
+  "main": "app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "dev": "ts-node src/app.ts"
+  },
+  "author": "foysol",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "ts-node": "^10.9.2"
+  }
+}
