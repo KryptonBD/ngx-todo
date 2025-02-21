@@ -7,4 +7,7 @@ export interface Todo {
   updatedAt: Date;
 }
 
-export type TodoStatus = "pending" | "completed";
+export enum TodoStatus {
+  Pending = "pending",
+  Completed = "completed",
+}

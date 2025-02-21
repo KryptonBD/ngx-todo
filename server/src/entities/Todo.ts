@@ -19,7 +19,7 @@ export class Todo implements ITodo {
   description?: string;
 
   @Column({
-    default: "pending",
+    default: TodoStatus.Pending,
   })
   status: TodoStatus;
 

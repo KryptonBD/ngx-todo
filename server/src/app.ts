@@ -11,10 +11,10 @@ app.use(express.json());
 
 AppDataSource.initialize()
   .then(() => {
+    app.use("/api/todos", todos);
+
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
-
-      app.use("/api/todos", todos);
     });
   })
   .catch((error) => {
