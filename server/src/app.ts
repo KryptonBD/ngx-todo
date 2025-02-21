@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { AppDataSource } from "./config/db";
+import todos from "./routes/todos";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -13,12 +14,7 @@ AppDataSource.initialize()
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
 
-      const todoRepository = AppDataSource.getRepository("Todo");
-
-      app.get("/", async (req, res) => {
-        const allTodos = await todoRepository.find();
-        res.json(allTodos);
-      });
+      app.use("/api/todos", todos);
     });
   })
   .catch((error) => {
