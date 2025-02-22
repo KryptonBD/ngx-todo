@@ -132,6 +132,6 @@ export const deleteTodo = async (req: Request, res: Response) => {
     return;
   }
 
-  await todoRepository.delete(todo);
+  await todoRepository.delete(todo.id);
   res.json({ message: "Todo deleted" });
 };

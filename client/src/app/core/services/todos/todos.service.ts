@@ -20,4 +20,20 @@ export class TodoService {
   updateTodoStatus(id: number, status: Pick<Todo, 'status'>) {
     return this.http.put(`/api/todos/${id}`, status);
   }
+
+  addTodo(todo: Omit<Todo, 'id'>) {
+    return this.http.post<Todo>('/api/todos', todo);
+  }
+
+  getTodoById(id: number) {
+    return this.http.get<Todo>(`/api/todos/${id}`);
+  }
+
+  updateTodo(id: number, todo: Todo) {
+    return this.http.put<Todo>(`/api/todos/${id}`, todo);
+  }
+
+  deleteTodo(id: number) {
+    return this.http.delete(`/api/todos/${id}`);
+  }
 }

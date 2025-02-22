@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TodoStore } from '../../../store/todo.store';
+import { Todo } from '../../../../shared/models/Todo';
 
 @Component({
   selector: 'app-todo-form',
@@ -16,6 +18,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TodoFormComponent implements OnInit {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
+  private readonly store = inject(TodoStore);
+
   private id = signal('');
 
   protected toDoForm = new FormGroup({
@@ -28,13 +32,25 @@ export class TodoFormComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.id.set(params['id']);
+        const todo = this.store.getTodoById(+this.id());
+
+        if (todo) {
+          this.toDoForm.patchValue(todo);
+        }
       }
     });
   }
 
   protected addTodo() {
     if (this.toDoForm.valid) {
-      console.log(this.toDoForm.value);
+      if (this.id()) {
+        this.store.updateTodo(+this.id(), this.toDoForm.value as Todo);
+        this.goBack();
+        return;
+      }
+
+      this.store.addTodo(this.toDoForm.value as Todo);
+      this.goBack();
     }
   }
 
@@ -43,6 +59,7 @@ export class TodoFormComponent implements OnInit {
       this.router.navigate(['/todos', this.id()]);
       return;
     }
+
     this.router.navigate(['/']);
   }
 }

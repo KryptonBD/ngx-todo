@@ -28,9 +28,47 @@ export const TodoStore = signalStore(
         patchState(store, { todos: res.data, total: res.total });
       });
     },
-    addTodo(todo: Omit<Todo, 'id'>) {},
-    updateTodo(todo: Todo) {},
-    deleteTodo(id: number) {},
+
+    addTodo(todo: Omit<Todo, 'id'>) {
+      todoService.addTodo(todo).subscribe((res) => {
+        patchState(store, (state) => ({
+          todos: [...state.todos, res],
+          total: state.total + 1,
+        }));
+      });
+    },
+
+    updateTodo(id: number, todo: Todo) {
+      todoService.updateTodo(id, todo).subscribe((res) => {
+        patchState(store, (state) => ({
+          todos: state.todos.map((t) => (t.id === id ? res : t)),
+        }));
+      });
+    },
+
+    deleteTodo(id: number) {
+      todoService.deleteTodo(id).subscribe((res) => {
+        patchState(store, (state) => ({
+          todos: state.todos.filter((todo) => todo.id !== id),
+          total: state.total - 1,
+        }));
+      });
+    },
+
+    getTodoById(id: number) {
+      let todo = store.todos().find((todo) => todo.id === id);
+
+      if (!todo) {
+        todoService.getTodoById(id).subscribe((res) => {
+          patchState(store, (state) => ({
+            todos: [...state.todos, res],
+          }));
+          todo = res;
+        });
+      }
+
+      return todo;
+    },
 
     updateStatus(id: number, status: TodoStatus) {
       todoService.updateTodoStatus(id, { status }).subscribe((res) => {
