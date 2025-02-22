@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TodoStore } from '../../../store/todo.store';
-import { Todo } from '../../../../shared/models/Todo';
+import { Todo } from '../../../shared/models/Todo';
 
 @Component({
   selector: 'app-todo-form',

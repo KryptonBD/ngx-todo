@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Todo } from '../../../../shared/models/Todo';
+import { Todo } from '../../../shared/models/Todo';
 
 type TodoResponse = {
   data: Todo[];

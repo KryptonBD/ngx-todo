@@ -5,9 +5,9 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { Todo, TodoStatus } from '../../shared/models/Todo';
 import { inject } from '@angular/core';
 import { TodoService } from '../core/services/todos/todos.service';
+import { Todo, TodoStatus } from '../shared/models/Todo';
 
 type TodoState = {
   todos: Todo[];

@@ -1,5 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
-import { TodoStatus } from '../../../../shared/models/Todo';
+import { TodoStatus } from '../../../shared/models/Todo';
 import { CommonModule } from '@angular/common';
 
 @Component({

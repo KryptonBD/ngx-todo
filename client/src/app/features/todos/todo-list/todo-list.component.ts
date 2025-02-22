@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { Router, RouterLink } from '@angular/router';
 import { TodoStore } from '../../../store/todo.store';
-import { TodoStatus } from '../../../../shared/models/Todo';
+import { TodoStatus } from '../../../shared/models/Todo';
 
 @Component({
   selector: 'app-todo-list',
