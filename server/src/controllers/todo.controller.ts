@@ -7,11 +7,14 @@ const todoRepository = AppDataSource.getRepository("Todo");
 /**
  * @description Gets all todos
  * @route GET api/todos
- * @returns {Todo[]} An array of todos
+ * @returns {data: Todo[], total: number} An array of todos and the total number of todos
  */
 export const getTodos = async (req: Request, res: Response) => {
   const allTodos = await todoRepository.find();
-  res.json(allTodos);
+  res.json({
+    data: allTodos,
+    total: allTodos.length,
+  });
 };
 
 /**

@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
-import { Todo, TodoStatus } from '../../../../shared/models/Todo';
 import { Router, RouterLink } from '@angular/router';
+import { TodoStore } from '../../../store/todo.store';
+import { TodoStatus } from '../../../../shared/models/Todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,14 +12,14 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class TodoListComponent {
   private router = inject(Router);
-  todos: Todo[] = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    title: `Todo ${i + 1}`,
-    status: Math.random() > 0.5 ? TodoStatus.Completed : TodoStatus.Pending,
-  }));
+  private readonly store = inject(TodoStore);
 
-  protected changeStatus(id: number) {
-    console.log(id);
+  todos = this.store.todos;
+
+  protected changeStatus(id: number, status: TodoStatus) {
+    const updatedStatus =
+      status === TodoStatus.Pending ? TodoStatus.Completed : TodoStatus.Pending;
+    this.store.updateStatus(id, updatedStatus);
   }
 
   protected viewDetails(id: number) {
