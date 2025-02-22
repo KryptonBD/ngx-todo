@@ -1,1 +1,31 @@
-<p>todo-item works!</p>
+<article
+  class="flex items-center justify-between p-4 mb-2 mx-2 bg-white shadow-lg rounded-lg"
+>
+  <h3
+    class="text-lg flex-1 truncate"
+    [ngClass]="{
+      'line-through': isCompleted()
+    }"
+    data-testid="todo-item-title"
+  >
+    {{ title() }}
+  </h3>
+
+  <button
+    class="px-3 py-2 text-white rounded-lg cursor-pointer"
+    [ngClass]="isCompleted() ? 'bg-red-300' : 'bg-green-400'"
+    (click)="toggleStatus()"
+    [attr.aria-label]="isCompleted() ? 'In Progress' : 'Done'"
+    data-testid="todo-item-status"
+  >
+    {{ isCompleted() ? "Mark as In Progress" : "Mark as Done" }}
+  </button>
+
+  <button
+    class="ml-2 p-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 cursor-pointer"
+    aria-label="Edit"
+    data-testid="todo-item-edit-button"
+  >
+    Edit
+  </button>
+</article>

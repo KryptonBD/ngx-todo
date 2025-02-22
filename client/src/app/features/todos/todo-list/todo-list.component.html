@@ -1,1 +1,5 @@
-<p>todo-list works!</p>
+<section class="max-w-2xl mx-auto p-6">
+  @for (todo of todos; track $index) {
+  <app-todo-item [title]="todo.title" [status]="todo.status" />
+  }
+</section>
