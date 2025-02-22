@@ -13,6 +13,7 @@ export class TodoItemComponent {
   status = input<TodoStatus>(TodoStatus.Pending);
 
   changeStatus = output();
+  viewDetails = output();
 
   protected isCompleted = computed(
     () => this.status() === TodoStatus.Completed
@@ -20,5 +21,9 @@ export class TodoItemComponent {
 
   protected toggleStatus() {
     this.changeStatus.emit();
+  }
+
+  protected viewTodoDetails() {
+    this.viewDetails.emit();
   }
 }

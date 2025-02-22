@@ -1,5 +1,35 @@
 <section class="max-w-2xl mx-auto p-6">
-  @for (todo of todos; track $index) {
-  <app-todo-item [title]="todo.title" [status]="todo.status" />
+  <section class="mb-4 flex items-center justify-between">
+    <a
+      routerLink="/add"
+      class="px-6 py-2 text-blue-700 font-semibold hover:bg-gray-100 btn-base"
+      aria-label="Add a new Todo"
+      data-testid="add-todo"
+    >
+      Add Todo
+    </a>
+
+    <form>
+      <label for="filter" class="sr-only">Filter Todos</label>
+      <select
+        id="filter"
+        class="p-2 btn-base"
+        aria-label="Select Filter Status"
+        data-testid="todo-filter"
+      >
+        <option value="">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+    </form>
+  </section>
+
+  @for (todo of todos; track todo.id) {
+  <app-todo-item
+    [title]="todo.title"
+    [status]="todo.status"
+    (changeStatus)="changeStatus(todo.id)"
+    (viewDetails)="viewDetails(todo.id)"
+  />
   }
 </section>

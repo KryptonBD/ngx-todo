@@ -1,1 +1,61 @@
-<p>todo-form works!</p>
+<section class="max-w-2xl mx-auto p-6">
+  <button
+    class="text-blue-400 font-semibold btn-base px-3 py-2"
+    (click)="goBack()"
+  >
+    &larr; Go Back
+  </button>
+
+  <form
+    [formGroup]="toDoForm"
+    (ngSubmit)="addTodo()"
+    class="bg-white my-4 px-6 py-4 rounded-lg"
+  >
+    <fieldset class="my-2">
+      <label for="title" data-testid="todo-title-label">Title</label>
+      <input
+        id="title"
+        type="text"
+        class="w-full mt-2 border px-4 py-2 rounded-lg"
+        aria-required="true"
+        placeholder="Please enter the title"
+        data-testid="todo-title-input"
+        required
+      />
+    </fieldset>
+
+    <fieldset class="my-2">
+      <label for="description" data-testid="todo-description-label"
+        >Description (optional)</label
+      >
+      <textarea
+        id="description"
+        class="w-full px-4 py-2 mt-2 border rounded-lg"
+        rows="4"
+        placeholder="Please enter the description"
+        data-testid="todo-description-textarea"
+      ></textarea>
+    </fieldset>
+
+    <fieldset class="my-2">
+      <label for="status" data-testid="todo-status-label">Status</label>
+      <select
+        id="status"
+        class="w-full px-4 py-2 mt-2 border rounded-lg"
+        aria-required="true"
+        data-testid="todo-status-select"
+        formControlName="status"
+      >
+        <option value="pending" selected>Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+    </fieldset>
+
+    <button
+      type="submit"
+      class="w-full text-blue-700 shadow-sm my-4 py-2 cursor-pointer rounded-lg border bg-white hover:bg-gray-100 focus:scale-y-95"
+    >
+      Submit
+    </button>
+  </form>
+</section>

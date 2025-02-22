@@ -1,5 +1,5 @@
 <article
-  class="flex items-center justify-between p-4 mb-2 mx-2 bg-white shadow-lg rounded-lg"
+  class="flex items-center justify-between p-4 mb-2 bg-white shadow-lg rounded-lg"
 >
   <h3
     class="text-lg flex-1 truncate"
@@ -25,6 +25,7 @@
     class="ml-2 p-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 cursor-pointer"
     aria-label="Edit"
     data-testid="todo-item-edit-button"
+    (click)="viewTodoDetails()"
   >
     Edit
   </button>
