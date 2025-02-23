@@ -14,7 +14,7 @@ services:
 
   api:
     build:
-      context: ./
+      context: ./server
       dockerfile: Dockerfile
     environment:
       - PORT=3000
@@ -27,6 +27,15 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
 
 volumes:
   ngx_todo:
