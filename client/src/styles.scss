@@ -4,3 +4,7 @@
 .btn-base {
   @apply rounded-lg bg-white;
 }
+
+.section-container {
+  @apply max-w-2xl mx-auto p-6;
+}
