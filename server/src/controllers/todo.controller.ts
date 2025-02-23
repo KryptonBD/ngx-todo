@@ -30,7 +30,7 @@ export const createTodo = async (req: Request, res: Response) => {
     return;
   }
 
-  const newTodo = await todoRepository.create(req.body);
+  const newTodo = todoRepository.create(req.body);
   await todoRepository.save(newTodo);
   res.json(newTodo);
 };
