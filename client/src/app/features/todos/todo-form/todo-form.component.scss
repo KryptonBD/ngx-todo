@@ -1,0 +1,25 @@
+.submit-button {
+  // @apply is broken in Tailwind 4, can only be used in global scope
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  color: var(--color-blue-700);
+  border: 1px solid currentColor;
+  background: white;
+
+  &:hover {
+    background: var(--color-blue-700);
+    color: white;
+  }
+
+  &:focus {
+    transform: scale(0.9);
+  }
+
+  &:disabled {
+    background: var(--color-stone-300);
+    color: white;
+    cursor: not-allowed;
+  }
+}

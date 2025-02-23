@@ -24,7 +24,7 @@ export class TodoFormComponent implements OnInit {
 
   protected toDoForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
     status: new FormControl('pending'),
   });
 
@@ -34,9 +34,10 @@ export class TodoFormComponent implements OnInit {
         this.id.set(params['id']);
         const todo = this.store.getTodoById(+this.id());
 
-        if (todo) {
-          this.toDoForm.patchValue(todo);
+        if (!todo) {
+          this.goBack();
         }
+        this.toDoForm.patchValue(todo!);
       }
     });
   }
