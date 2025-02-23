@@ -21,6 +21,7 @@
         placeholder="Please enter the title"
         data-testid="todo-title-input"
         formControlName="title"
+        aria-label="Todo Title"
         required
       />
     </fieldset>
@@ -56,6 +57,8 @@
     <button
       type="submit"
       class="submit-button shadow-sm rounded-lg"
+      data-testid="todo-form-submit-button"
+      aria-label="Submit Todo"
       [disabled]="toDoForm.invalid"
     >
       Submit
