@@ -16,8 +16,11 @@
         class="p-2 btn-base"
         aria-label="Select Filter Status"
         data-testid="todo-filter"
+        [ngModel]="currentFilter()"
+        (ngModelChange)="filterTodos($event)"
+        [ngModelOptions]="{ standalone: true }"
       >
-        <option value="">All</option>
+        <option value="all">All</option>
         <option value="pending">Pending</option>
         <option value="completed">Completed</option>
       </select>
