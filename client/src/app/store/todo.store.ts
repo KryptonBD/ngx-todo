@@ -11,7 +11,6 @@ import { Todo, TodoStatus } from '../shared/models/Todo';
 
 type TodoState = {
   todos: Todo[];
-  filteredTodos: Todo[];
   total: number;
   currentFilter: TodoStatus | 'all';
 };
@@ -19,7 +18,6 @@ type TodoState = {
 const initialState: TodoState = {
   todos: [],
   total: 0,
-  filteredTodos: [],
   currentFilter: 'all',
 };
 
@@ -32,7 +30,6 @@ export const TodoStore = signalStore(
         patchState(store, {
           todos: res.data,
           total: res.total,
-          filteredTodos: res.data,
         });
       });
     },
@@ -92,12 +89,8 @@ export const TodoStore = signalStore(
     },
 
     setFilter(status: TodoStatus | 'all') {
-      patchState(store, (state) => ({
+      patchState(store, () => ({
         currentFilter: status,
-        filteredTodos:
-          status === 'all'
-            ? state.todos
-            : state.todos.filter((todo) => todo.status === status),
       }));
     },
   })),
