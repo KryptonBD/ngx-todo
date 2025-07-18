@@ -5,10 +5,17 @@ import { TodoStore } from '../../../store/todo.store';
 import { TodoStatus } from '../../../shared/models/Todo';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FilterStatusPipe } from '../../../shared/pipes/filter-status.pipe';
 
 @Component({
   selector: 'app-todo-list',
-  imports: [TodoItemComponent, RouterLink, FormsModule, CommonModule],
+  imports: [
+    TodoItemComponent,
+    RouterLink,
+    FormsModule,
+    CommonModule,
+    FilterStatusPipe,
+  ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
   standalone: true,
@@ -17,7 +24,7 @@ export class TodoListComponent {
   private router = inject(Router);
   private readonly store = inject(TodoStore);
 
-  protected todos = this.store.filteredTodos;
+  protected todos = this.store.todos;
   protected currentFilter = this.store.currentFilter;
 
   protected changeStatus(id: number, status: TodoStatus) {

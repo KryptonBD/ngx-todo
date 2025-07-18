@@ -27,7 +27,7 @@
     </form>
   </div>
 
-  @for (todo of todos(); track todo.id) {
+  @for (todo of todos() | filterStatus: currentFilter(); track todo.id) {
   <app-todo-item
     [title]="todo.title"
     [status]="todo.status"
@@ -37,6 +37,7 @@
   } @empty {
   <h2
     class="text-center text-lg bg-white text-gray-600 p-5 py-8 rounded-lg shadow-md"
+    data-testid="todo-list-empty"
   >
     No Todo Yet
   </h2>
